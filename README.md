@@ -1,24 +1,64 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## houses テーブル
 
-Things you may want to cover:
+| Column | Type    | Options     |
+| ------ | ------- | ----------- |
+| name   | string  | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :plans
+- has_many :recipes
+- has_many :users
 
-* Configuration
+## plans テーブル
 
-* Database creation
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| title  | string     | null: false       |
+| date   | date       | null: false       |
+| house  | references | foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- has_many :ingredients
+- belongs_to :house
 
-* Services (job queues, cache servers, search engines, etc.)
+## ingredients テーブル
 
-* Deployment instructions
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| name   | string     | null: false       |
+| amount | integer    | null: false       |
+| price  | integer    |                   |
+| plan   | references | foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :plan
+
+## users テーブル
+
+| Column   | Type       | Options           |
+| -------- | ---------- | ----------------- |
+| nickname | string     | null: false       |
+| email    | string     | null: false       |
+| password | string     | null: false       |
+| house    | references | foreign_key: true |
+
+### Association
+
+- belongs_to :house
+
+## recipes テーブル
+
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| title  | string     | null: false       |
+| text   | text       | null: false       |
+| house  | references | foreign_key: true |
+
+### Association
+
+- belongs_to :house
