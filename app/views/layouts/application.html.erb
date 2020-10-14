@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GohanManager</title>
+    <title>ごはんマネージャー</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag('favicon.ico') %>
   </head>
 
   <body>
+    <div class="container">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="/assets/logo.png" width="383" height="63" class="d-inline-block align-top" alt="" loading="lazy">
+        </a>
+        <%= link_to 'ログイン', "#", class: "nav-link" %>
+        <%= link_to '新規登録', "#", class: "nav-link" %>
+      </nav>
+    </div>
+    <div class="container">
     <%= yield %>
+    </div>
+    <footer>
+    </footer>
   </body>
 </html>
