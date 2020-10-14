@@ -1,6 +1,5 @@
-<div class="content">
-  <div>
-  <%= link_to '新規作成', "#", class: "nav-link" %>
-  </div>
-  <div id='calendar'></div>
-</div>
+<nav class="navbar navbar-light bg-warning text-dark">
+  <span class="navbar-brand mt-2 h1">ごはんカレンダー</span>
+  <%= link_to '献立作成', new_plan_path, class: "btn border border-danger"%>
+</nav>
+<div id='calendar'></div>

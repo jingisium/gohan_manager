@@ -3,7 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import allLocales from '@fullcalendar/core/locales-all.js';
 
-function calendar(){
+window.addEventListener('turbolinks:load', () => {
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new Calendar(calendarEl, {
@@ -13,5 +13,4 @@ function calendar(){
   });
 
   calendar.render();
-};
-window.addEventListener('load', calendar);
+});

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-light bg-red">
+  <span class="navbar-brand mt-2 h1">今日の献立</span>
+  <%= link_to 'トップへ戻る', root_path, class: "nav-link"%>
+</nav>
+<%= form_with model: @plan, local: true do |f| %>
+  <div>
+    <div class="new-tips">
+      今日作った料理をカレンダーに載せよう
+    </div>
+    <%= f.file_field :image %>
+  </div>
+  <div>
+    <div class="new-tips">
+      今日の献立を計画しよう
+    </div>
+    <%= f.text_area :title, placeholder: "例：肉じゃが、味噌汁、おひたし（３人分）", maxlength: 60 %>
+  </div>
+  
+  <%= f.submit '保存する', type: "button", class: "btn btn-primary rounded-pill" %>
+<% end %>

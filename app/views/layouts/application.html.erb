@@ -12,12 +12,10 @@
 
   <body>
     <div class="container">
-      <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="/assets/logo.png" width="383" height="63" class="d-inline-block align-top" alt="" loading="lazy">
-        </a>
-        <%= link_to 'ログイン', "#", class: "nav-link" %>
-        <%= link_to '新規登録', "#", class: "nav-link" %>
+      <nav class="navbar navbar-light bg-light shadow my-2">
+        <%= link_to image_tag("/assets/logo.png"), root_path,  class: "navbar-brand" %>
+        <%= link_to 'ログイン', "#", class: "btn border border-primary col-3" %>
+        <%= link_to '新規登録', "#", class: "btn border border-danger col-3" %>
       </nav>
     </div>
     <div class="container">
