@@ -2,12 +2,13 @@
   <span class="navbar-brand mt-2 h1">今日の献立</span>
   <%= link_to 'トップへ戻る', root_path, class: "nav-link"%>
 </nav>
-<%= form_with model: @plan_ingredient, url: plans_path, local: true do |f| %>
+<%= form_with url: plans_path, local: true do |f| %>
   <%= raw sprintf(f.date_select(:date, use_month_numbers: true, date_separator: '%s'),'年','月') + '日' %>
   <div>
     <div class="new-tips">
       今日作った料理をカレンダーに載せよう
     </div>
+    <div class="image-list"><div>
     <%= f.file_field :image %>
   </div>
   <div>
@@ -16,18 +17,28 @@
     </div>
     <%= f.text_area :title, placeholder: "例：肉じゃが、味噌汁、おひたし（３人分）", class: "form-control col-12", maxlength: 60 %>
   </div>
-  <div class="form-row">
-    <label for="input-ingredient-name">材料</label>
-    <label for="input-amount">量</label>
-  </div>
+
+
+
+  <label for="input-ingredient-name">材料</label>
+  <label for="input-amount">量</label>
+
+  <div class="box" data-formno="0">
+    <div class="form-row w-100">
       <div class="form-group col-md-4 col-4">
-        <%= f.text_field :name, placeholder: "例：じゃがいも", class: "form-control", id: "input-ingredient-name" %>
+        <%= f.text_field :name, placeholder: "例：味噌", class: "form-control", id: "input-ingredient-name", name: "name[]" %>
       </div>
-    <div class="form-group col-md-4 col-4">
-      <%= f.text_field :amount, placeholder: "例：3個", class: "form-control", id: "input-amount" %>
+      <div class="form-group col-md-3 col-3">
+        <%= f.text_field :amount, placeholder: "1パック", class: "form-control", id: "input-amount", name: "amount[]" %>
+      </div>
+      <div class="form-group col-md-2 col-2">
+        <%= f.number_field :price, placeholder: "200", class: "form-control", id: "input-price", name: "price[]" %>
+      </div>
+      <input id="delete-form-btn" class="btn btn-sm btn-danger col-1 h-75" type="button" value='削除'>
     </div>
-    <div class="form-group col-md-4 col-4">
-      <%= f.number_field :price, placeholder: "例：300", class: "form-control", id: "input-amount" %>
-    </div>
+  </div>
+  <input id="add-form-btn" class="btn btn-sm btn-success d-block mb-2" type="button" value="材料を追加">
+
+
   <%= f.submit '保存する' %>
 <% end %>

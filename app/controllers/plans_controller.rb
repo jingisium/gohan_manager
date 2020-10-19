@@ -3,13 +3,13 @@ class PlansController < ApplicationController
   end
 
   def new
-    @plan_ingredient = PlanIngredient.new
+    @plan = Plan.new
   end
 
   def create
-    @plan_ingredient = PlanIngredient.new(plan_params)
-    if @plan_ingredient.valid?
-      @plan_ingredient.save
+    @plan = Plan.new(plan_params)
+    @ingredient = Ingredient.new(ingredient_params)
+    if @plan.save && create_ingredients(@plan.id)
       redirect_to root_path
     else
       render :new
@@ -19,22 +19,18 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan_ingredient).permit(:title, :date, :name, :amount, :price)
+    params.permit(:title, :date)
   end
 
-  # def date_join
-  #   year = params[:plan_ingredient]["date(1i)"]
-  #   month = params[:plan_ingredient]["date(2i)"]
-  #   day = params[:plan_ingredient]["date(3i)"]
+  def ingredient_params
+    params.permit(name: [], amount: [], price: [])
+  end
 
-  #   if year.empty? || month.empty? || day.empty?
-  #     return
-  #   end
-
-  #   params[:plan_ingredient][:date] = Date.new year.to_i,month.to_i,day.to_i
-
-  #   year = nil
-  #   month = nil
-  #   day = nil
-  # end
+  def create_ingredients(plan_id)
+    params[:name].each_with_index do |name, i|
+      amount = params[:amount][i]
+      price = params[:price][i]
+      Ingredient.create(name: name, amount: amount, price: price, plan_id: @plan.id)
+    end
+  end
 end
