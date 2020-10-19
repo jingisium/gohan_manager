@@ -15,13 +15,13 @@
     <div class="new-tips">
       今日の献立を計画しよう
     </div>
-    <%= f.text_area :title, placeholder: "例：肉じゃが、味噌汁、おひたし（３人分）", class: "form-control col-12", maxlength: 60 %>
+    <%= f.text_area :title, placeholder: "例：肉じゃが、味噌汁、おひたし（３人分）", class: "form-control col-12 my-3 ", maxlength: 60 %>
   </div>
 
 
 
-  <label for="input-ingredient-name">材料</label>
-  <label for="input-amount">量</label>
+  <%# <label for="input-ingredient-name">材料</label>
+  <label for="input-amount">量</label> %>
 
   <div class="box" data-formno="0">
     <div class="form-row w-100">
@@ -29,10 +29,10 @@
         <%= f.text_field :name, placeholder: "例：味噌", class: "form-control", id: "input-ingredient-name", name: "name[]" %>
       </div>
       <div class="form-group col-md-3 col-3">
-        <%= f.text_field :amount, placeholder: "1パック", class: "form-control", id: "input-amount", name: "amount[]" %>
+        <%= f.text_field :amount, placeholder: "個数・量", class: "form-control", id: "input-amount", name: "amount[]" %>
       </div>
       <div class="form-group col-md-2 col-2">
-        <%= f.number_field :price, placeholder: "200", class: "form-control", id: "input-price", name: "price[]" %>
+        <%= f.number_field :price, placeholder: "金額", class: "form-control", id: "input-price", name: "price[]" %>
       </div>
       <input id="delete-form-btn" class="btn btn-sm btn-danger col-1 h-75" type="button" value='削除'>
     </div>

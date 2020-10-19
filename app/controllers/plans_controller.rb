@@ -19,7 +19,7 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.permit(:title, :date)
+    params.permit(:title, :date, :image)
   end
 
   def ingredient_params
