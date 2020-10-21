@@ -1,5 +1,18 @@
-<nav class="navbar navbar-light bg-warning text-dark">
+<nav class="navbar navbar-light $blue text-dark my-2 ">
   <span class="navbar-brand mt-2 h1">ごはんカレンダー</span>
   <%= link_to '献立作成', new_plan_path, class: "btn border border-danger"%>
 </nav>
+
+<script type="text/javascript">
+  var events = [
+    <% @plans.each do |plan| %>
+      {
+        title: '<%= plan.title %>',
+        start: '<%=plan.date%>',
+        image_url: '<%=url_for(plan.image)%>'
+      }, 
+    <% end %>
+  ];
+</script>
+
 <div id='calendar'></div>
