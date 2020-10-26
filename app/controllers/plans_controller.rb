@@ -18,6 +18,9 @@ class PlansController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def plan_params
