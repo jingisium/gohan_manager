@@ -1,1 +1,21 @@
-<h1>トップページ</h1>
+<nav class="navbar navbar-light text-dark my-2 ">
+  <span class="navbar-brand mt-2 h1">マイハウス</span>
+  <%= link_to '献立作成', new_plan_path, class: "btn btn-outline-success"%>
+</nav>
+
+
+<script type="text/javascript">
+  var events = [
+    <% @plans.each do |plan| %>
+      {
+        title: '<%= plan.title %>',
+        start: '<%=plan.date%>',
+        <% if plan.image.attached? %>
+        image_url: '<%=url_for(plan.image)%>'
+        <% end %>
+      },
+    <% end %>
+  ];
+</script>
+
+<div id='calendar'></div>
