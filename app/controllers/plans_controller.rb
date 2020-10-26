@@ -10,6 +10,7 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     @ingredient = Ingredient.new(ingredient_params)
+    
     if @plan.save && create_ingredients(@plan.id)
       redirect_to root_path
     else

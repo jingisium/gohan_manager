@@ -20,8 +20,10 @@ window.addEventListener('turbolinks:load', () => {
     dayCellContent: function(e) {
       e.dayNumberText = e.dayNumberText.replace('日', '');
     },
-
+    
     events: events,
+
+    
 
     eventContent: function(plan) {
       var arrayOfDomNodes = [];

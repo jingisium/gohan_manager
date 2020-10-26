@@ -11,6 +11,7 @@ require("../calendar")
 require("jquery")
 require("../add_form_btn")
 require("../remove_form_btn")
+require("../preview")
 
 import 'bootstrap';
 import '../stylesheets/application.scss';
