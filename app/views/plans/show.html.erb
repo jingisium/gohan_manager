@@ -1,0 +1,90 @@
+<nav class="navbar navbar-light text-dark my-2 d-flex justify-content-between">
+  <p class="navbar-brand mt-2 h1"><%= "#{@plan.date.year}年#{@plan.date.month}月#{@plan.date.day}日の献立"%></p>
+  <div >
+    <%= link_to '編集する', root_path, class: "btn btn-sm btn-outline-info" %>
+    <%= link_to '削除する', root_path, class: "btn btn-sm btn-outline-danger" %>
+    <%= link_to 'トップへ戻る', root_path, class: "btn btn-sm btn-outline-primary"%>
+  </div>
+</nav>
+
+<table class="table table-striped shadow mb-0">
+  <thead >
+    <tr class="table-info text-dark">
+      <th scope="col" class="w-25 text-center">項目</th>
+      <th scope="col" class="text-center">保存内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">
+        <i class="fas fa-utensils h5 my-auto mx-2 text-warning"></i><span class="h5">メニュー</span>
+      </th>
+      <td class="font-weight-bold h5">
+        <%= @plan.title %>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row" >
+        <i class="fas fa-utensils h5 my-auto mx-2 text-warning"></i><span class="h5">写真</span>
+      </th>
+      <td class="font-weight-bold h5">
+        <% if @plan.image.attached? %>
+          <%= image_tag @plan.image.variant(resize: '600x600'), class:"img-fluid"%>
+        <% else %>
+          <p class="h6">まだ写真が保存されていません。</p>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="table table-bordered shadow mt-0">
+  <thead>
+    <tr class="table-secondary text-dark">
+      <th scope="col" class="w-25 text-start">
+        <i class="fas fa-utensils h5 my-auto mx-2 text-warning"></i><span class="h5">材料</span>
+      </th>
+      <th scope="col" class="text-center">名称</th>
+      <th scope="col" class="text-center">個数・量</th>
+      <th scope="col" class="text-center">金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @plan.ingredients.present? %>
+      <% @plan.ingredients.each_with_index do |ingredient, i| %>
+        <tr>
+          <th scope="row" class="text-center"><%= i + 1 %></th>
+          <td class="font-weight-bold text-center h6"><%= ingredient.name %></td>
+          <td class="font-weight-bold text-center h6"><%= ingredient.amount %></td>
+          <td class="font-weight-bold text-right h6"><%= ingredient.price %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <th scope="row" class="text-center">#</th>
+        <td class="h6">まだ材料が保存されていません。</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-end">
+  <div class="card col-6 shadow">
+    <div class="row no-gutters">
+      <div class="card-body">
+        <span class="text-center h6 mb-0">合計金額</span>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body pr-0">
+          <% sum = 0 %>
+          <% @plan.ingredients.each do |ingredient| %>
+            <% sum += ingredient.price %>
+          <% end %>
+          <p class="font-weight-bold text-right h6 mb-0">
+            <%= sum %>円
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

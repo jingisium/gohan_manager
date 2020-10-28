@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function() {
     cloneCode.find('#input-amount');
     cloneCode.find('#input-price');
 
-    cloneCode.insertBefore($('#add-form-btn'));
+    cloneCode.insertBefore($('.box:last'));
   });
 });
 

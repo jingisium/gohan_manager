@@ -45,6 +45,13 @@ window.addEventListener('turbolinks:load', () => {
 
       return { domNodes: arrayOfDomNodes };
     },
+
+    eventClick: function(info) {
+      var eventObj = info.event;
+      
+      window.open(eventObj.url);
+      info.jsEvent.preventDefault();
+    },
   });
 
   calendar.render();
