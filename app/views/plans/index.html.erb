@@ -1,15 +1,15 @@
 <nav class="navbar navbar-light text-dark my-2 ">
   <span class="navbar-brand mt-2 h1">マイハウス</span>
-  <%= link_to '献立作成', new_plan_path, class: "btn btn-outline-success"%>
+  <%= link_to '献立作成', new_plan_path, class: "btn btn-sm btn-outline-success"%>
 </nav>
-
 
 <script type="text/javascript">
   var events = [
     <% @plans.each do |plan| %>
       {
         title: '<%= plan.title %>',
-        start: '<%=plan.date%>',
+        start: '<%= plan.date %>',
+        url: '/plans/<%= plan.id %>',
         <% if plan.image.attached? %>
         image_url: '<%=url_for(plan.image)%>'
         <% end %>

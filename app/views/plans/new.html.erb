@@ -1,13 +1,11 @@
 <nav class="navbar navbar-light my-2">
   <span class="navbar-brand mt-2 h1">今日の献立</span>
-  <%= link_to 'トップへ戻る', root_path, class: "btn btn-outline-primary"%>
+  <%= link_to 'トップへ戻る', root_path, class: "btn btn-sm btn-outline-primary"%>
 </nav>
 <%= form_with url: plans_path, id:"plan-form", local: true do |f| %>
 
   <div class="card my-3">
-    <h6 class="card-header">日付の選択
-      <span class="badge badge-pill badge-warning">必須</span>
-    </h6>
+    <h6 class="card-header">日付の選択</h6>
     <div class="card-body">
       <div class="date-select">
         <%= raw sprintf(f.date_select(:date, use_month_numbers: true, date_separator: '%s'),'年','月') + '日' %>
@@ -17,36 +15,42 @@
   
 
   <div class="card mt-3">
-    <h6 class="card-header">その日の献立を計画しよう
-      <span class="badge badge-pill badge-warning">必須</span>
-    </h6>
+    <h6 class="card-header">その日の献立を計画しよう</h6>
     
     <div class="container">
-      <%= f.text_area :title, placeholder: "献立(例：肉じゃが、味噌汁、おひたし ３人分)  ※60文字以内", id:"title", class: "form-control col-11 mx-auto my-3 ", maxlength: 60 %>
+      <%= f.text_area :title, placeholder: "献立(例：肉じゃが、味噌汁、おひたし ３人分)  ※60文字以内", id:"title", class: "form-control col-11 mx-auto my-3 ", maxlength: 60, required: true %>
     </div>
   </div>
 
   <div class="card mt-3">
-    <h6 class="card-header">必要な材料を入力しよう
-      <span class="badge badge-pill badge-secondary">任意</span>
-    </h6>
-    <div class="container">
-      <div class="box mt-2" data-formno="0">
-        <div class="form-row w-100 ">
-          <div class="form-group col-md-4 col-5 offset-md-1">
-            <%= f.text_field :name, placeholder: "材料(例：味噌)", class: "form-control", id: "input-ingredient-name", name: "name[]" %>
-          </div>
-          <div class="form-group col-3">
-            <%= f.text_field :amount, placeholder: "個数・量", class: "form-control", id: "input-amount", name: "amount[]" %>
-          </div>
-          <div class="form-group col-md-2 col-3">
-            <%= f.number_field :price, placeholder: "金額", class: "form-control", id: "input-price", name: "price[]" %>
-          </div>
-          <input id="delete-form-btn" value='削除' type="button" class="btn btn-sm btn-danger col-1 h-75">
-        </div>
-      </div>
-      <input id="add-form-btn" class="btn btn-sm btn-success d-block col-3 mb-2 mx-auto" type="button" value="材料を追加">
-    </div>
+    <h6 class="card-header">必要な材料を入力しよう</h6>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-light text-dark">
+          <th scope="col" class="text-center h6 w-50">名称</th>
+          <th scope="col" class="text-center h6">個数・量</th>
+          <th scope="col" class="text-center h6">金額</th>
+          <th scope="col" class="text-center h6">削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="box mt-2" data-formno="0">
+            <td class="form-group">
+              <%= f.text_field :name, placeholder: "例：じゃがいも", class: "form-control", id: "input-ingredient-name", name: "name[]", required: true %>
+            </td>
+            <td class="form-group">
+              <%= f.text_field :amount, placeholder: "中3個", class: "form-control", id: "input-amount", name: "amount[]", required: true %>
+            </td>
+            <td class="form-group">
+              <%= f.number_field :price, placeholder: "金額", value: 0, class: "form-control", id: "input-price", name: "price[]", required: true %>
+            </td>
+            <td>
+              <input id="delete-form-btn" value='削除' type="button" class="btn btn-sm btn-danger">
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <input id="add-form-btn" class="btn btn-sm btn-success d-block col-3 mb-2 mx-auto" type="button" value="材料を追加">
   </div>
 
   <div class="card mt-3">
