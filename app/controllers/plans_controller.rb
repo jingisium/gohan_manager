@@ -22,6 +22,9 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
   end
 
+  def destroy
+  end
+  
   private
 
   def plan_params
