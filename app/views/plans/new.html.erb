@@ -7,8 +7,13 @@
   <div class="card my-3">
     <h6 class="card-header">日付の選択</h6>
     <div class="card-body">
-      <div class="date-select">
-        <%= raw sprintf(f.date_select(:date, use_month_numbers: true, date_separator: '%s'),'年','月') + '日' %>
+      <div class="form-group col-6">
+        <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+          <%= f.text_field :date, class: "form-control datetimepicker-input", data_target: "#datetimepicker4"%>
+          <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
