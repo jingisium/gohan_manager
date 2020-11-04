@@ -1,5 +1,6 @@
-$(function () {
+$(document).on('turbolinks:load',function () {
   $('#datetimepicker4').datetimepicker({
-      format: 'L'
+      format: 'L',
+      time: false
   });
 });
