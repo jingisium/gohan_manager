@@ -12,6 +12,9 @@ require("jquery")
 require("../add_form_btn")
 require("../remove_form_btn")
 require("../preview")
+require("moment/locale/ja")
+require("tempusdominus-bootstrap-4")
+require("../date_picker")
 
 import 'bootstrap';
 import '../stylesheets/application.scss';
