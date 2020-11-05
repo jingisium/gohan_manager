@@ -1,4 +1,6 @@
 class PlansController < ApplicationController
+  before_action :find_plan, only: [:show, :destroy]
+
   def index
     @plans = Plan.all
   end
@@ -19,7 +21,11 @@ class PlansController < ApplicationController
   end
 
   def show
-    @plan = Plan.find(params[:id])
+  end
+
+  def destroy
+    @plan.destroy
+    redirect_to root_path
   end
 
   private
@@ -38,5 +44,9 @@ class PlansController < ApplicationController
       price = params[:price][i]
       Ingredient.create(name: name, amount: amount, price: price, plan_id: @plan.id)
     end
+  end
+
+  def find_plan
+    @plan = Plan.find(params[:id])
   end
 end

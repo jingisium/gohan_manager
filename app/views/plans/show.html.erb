@@ -1,8 +1,7 @@
 <nav class="navbar navbar-light text-dark my-2 d-flex justify-content-between">
   <p class="navbar-brand mt-2 h1"><%= "#{@plan.date.year}年#{@plan.date.month}月#{@plan.date.day}日の献立"%></p>
-  <div >
-    <%= link_to '編集する', root_path, class: "btn btn-sm btn-outline-info" %>
-    <%= link_to '削除する', root_path, class: "btn btn-sm btn-outline-danger" %>
+  <div>
+    <%= link_to '削除する', plan_path(@plan.id), method: :delete, class: "btn btn-sm btn-outline-danger" %>
     <%= link_to 'トップへ戻る', root_path, class: "btn btn-sm btn-outline-primary"%>
   </div>
 </nav>
